@@ -1,3 +1,8 @@
+# ############################################################################## #
+# This is my Advent of Code local setup tool.                                    #
+# It creates a folder structure for the daily challenge and opens it in VS Code. #
+# ############################################################################## #
+
 import os
 import random
 import argparse

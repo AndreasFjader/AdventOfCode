@@ -1,5 +1,3 @@
-# Advent of Code
-
 file = 'in'
 delimiter = '   '
 
