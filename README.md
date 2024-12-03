@@ -4,6 +4,7 @@ These are my somewhat hacky Advent of Code solutions, starting from year 2024.
 I try to vary between using `Python`, `Node.js`, `Java`, and `C#`, by using the `aoc.py` script which randomly selects a language for each day.
 
 ## How to use the aoc.py script
+- Ensure VS Code is installed.
 - Create your Advent of Code directory and place the `aoc.py` file there.
 - Run `python aoc.py` with the following arguments:
 - - `-y --year` => year of the challenge (folder). If folder doesn't exist, it will be created

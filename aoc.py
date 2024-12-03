@@ -15,6 +15,7 @@ import subprocess
 LANGUAGES = ['python', 'node.js', 'c#', 'java']
 LANG_EXTENSIONS = { 'python': 'py', 'node.js': 'js', 'c#': 'cs', 'java': 'java' }
 ROOT_DIR = os.path.dirname(__file__)
+VS_CODE_PATH = 'D:\\Microsoft VS Code\\bin\\code.cmd'
 SRC_FILE_NAME = 'solve'
 
 ###################
@@ -98,7 +99,7 @@ def validate_language(language: str):
 
 def open_vscode(path):
     try:
-        subprocess.run(['D:\\Microsoft VS Code\\bin\\code.cmd', path], check=True)
+        subprocess.run([VS_CODE_PATH, path], check=True)
     except subprocess.CalledProcessError:
         print('Error opening VS Code')
         exit()
