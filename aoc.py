@@ -69,12 +69,15 @@ def setup_dir(year, day, language):
     return day_dir
 
 def create_input_file(day_dir):
-    input_file = f'{day_dir}\\input.txt'
     if not os.path.exists(day_dir):
         print('Error creating input file.')
         exit()
+        
+    input_file = f'{day_dir}\\input.txt'
+    test_input_file = f'{day_dir}\\test.txt'
     
     open(input_file, 'w').close()
+    open(test_input_file, 'w').close()
 
 
 ####################
