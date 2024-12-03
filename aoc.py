@@ -14,7 +14,7 @@ import subprocess
 
 LANGUAGES = ['python', 'node.js', 'c#', 'java']
 LANG_EXTENSIONS = { 'python': 'py', 'node.js': 'js', 'c#': 'cs', 'java': 'java' }
-ROOT_DIR = 'D:\\Advent of Code'
+ROOT_DIR = os.path.dirname(__file__)
 SRC_FILE_NAME = 'solve'
 
 ###################
