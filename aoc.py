@@ -15,32 +15,59 @@ import subprocess
 LANGUAGES = ['python', 'node.js', 'c#', 'java']
 LANG_EXTENSIONS = { 'python': 'py', 'node.js': 'js', 'c#': 'cs', 'java': 'java' }
 ROOT_DIR = os.path.dirname(__file__)
-VS_CODE_PATH = 'D:\\Microsoft VS Code\\bin\\code.cmd'
 SRC_FILE_NAME = 'solve'
 
 ###################
 # Language setups #
 ###################
 
-def setup_python(day_dir):
-    file = setup_language_file(day_dir, 'py')
+def setup_python(day_dir, day: int):
+    file = setup_language_file(day_dir, 'solve.py')
     with open(file, 'w') as f:
-        f.write('# Advent of Code\n\n')
+        f.write(f'# Advent of Code Day {day}\n\n')
 
-def setup_nodejs(day_dir):
-    file = setup_language_file(day_dir, 'js')
-    return
+def setup_nodejs(day_dir, day: int):
+    file = setup_language_file(day_dir, 'solve.js')
+    with open(file, 'w') as f:
+        f.write(f'// Advent of Code Day {day}\n\n')
 
-def setup_csharp(day_dir):
-    file = setup_language_file(day_dir, 'cs')
-    return
+def setup_csharp(day_dir, day: int):
+    proj_file = setup_language_file(day_dir, 'AoC.csproj')
+    with open(proj_file, 'w') as f:
+        f.write("""
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+</Project>
+    """)
 
-def setup_java(day_dir):
-    file = setup_language_file(day_dir, 'java')
-    return
+    source_file = setup_language_file(day_dir, 'Program.cs')
+    with open(source_file, 'w') as f:
+        f.write(f"""using System;
+                
+class Program {{
+    static void Main(string[] args) {{
+        Console.WriteLine("Advent of Code Day {day}");
+    }}
+}}
+""")
 
-def setup_language_file(day_dir, lang_ext):
-    return f'{day_dir}\\{SRC_FILE_NAME}.{lang_ext}'
+def setup_java(day_dir, day: int):
+    file = setup_language_file(day_dir, 'Main.java')
+
+    with open(file, 'w') as f:
+        f.write(f"""public class Main {{
+    public static void main(String[] args) {{
+        System.out.println("Advent of Code Day {day}");
+    }}
+}}
+""")
+    
+
+def setup_language_file(day_dir, file_name):
+    return f'{day_dir}\\{file_name}'
 
 
 ###################
@@ -58,13 +85,13 @@ def setup_dir(year, day, language):
     
     # Setup language specific files
     if language.lower() == 'python':
-        setup_python(day_dir)
+        setup_python(day_dir, day)
     elif language.lower() == 'node.js':
-        setup_nodejs(day_dir)
+        setup_nodejs(day_dir, day)
     elif language.lower() == 'c#':
-        setup_csharp(day_dir)
+        setup_csharp(day_dir, day)
     elif language.lower() == 'java':
-        setup_java(day_dir)
+        setup_java(day_dir, day)
     
     
     return day_dir
@@ -90,7 +117,7 @@ def validate_day(day):
         raise ValueError('Day must be between 1 and 25')
 
 def validate_language(language: str):
-    if language.lower() not in LANGUAGES and language.lower() not in LANG_EXTENSIONS.values():
+    if language and language.lower() not in LANGUAGES and language.lower() not in LANG_EXTENSIONS.values():
         raise ValueError(f'Invalid language: {language}')
 
 ########################
@@ -99,7 +126,7 @@ def validate_language(language: str):
 
 def open_vscode(path):
     try:
-        subprocess.run([VS_CODE_PATH, path], check=True)
+        subprocess.run(['code.cmd', path], check=True)
     except subprocess.CalledProcessError:
         print('Error opening VS Code')
         exit()
