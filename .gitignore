@@ -1,0 +1,40 @@
+# Ignore everything by default
+*
+
+# Allow only source files in specific languages
+!*.py
+!*.js
+!*.cs
+!*.java
+!*.gitignore
+
+# Allow directories so that source files within them are not ignored
+!*/
+
+# Ignore system or IDE-specific files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+*.tmp
+
+# Ignore compiled and temporary files
+*.exe
+*.dll
+*.class
+*.jar
+*.obj
+*.o
+*.out
+*.pyc
+*.pyo
+*.pdb
+*.swp
+*.swo
+*.bak
+
+# Ignore environment or configuration files
+.env
+node_modules/
+__pycache__/
