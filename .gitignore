@@ -38,3 +38,6 @@ Thumbs.db
 .env
 node_modules/
 __pycache__/
+
+# Ignore obj folder and all its content
+obj/
